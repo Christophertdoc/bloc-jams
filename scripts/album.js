@@ -28,6 +28,19 @@ var albumMarconi = {
     ]
 };
 
+var albumDebussy = {
+    title: 'La Mer',
+    artist: 'Claude Debussy',
+    label: 'Decca',
+    year: '1905',
+    albumArtUrl: 'assets/images/album_covers/20.png',
+    songs: [
+        { title: 'I. De L Aube A Midi Sur La Mer', duration: '1:01' },
+        { title: 'II. Jeux De Vagues', duration: '5:01' },
+        { title: 'III. Dialogue Du Vent Et De La Mer', duration: '3:21'}
+    ]
+};
+
 var createSongRow = function(songNumber, songName, songLength) {
     var template =
        '<tr class="album-view-song-item">'
@@ -62,3 +75,16 @@ var setCurrentAlbum = function(album) {
 window.onload = function() {
     setCurrentAlbum(albumPicasso);
 };
+
+/* CLICK EVENT LISTENER TO TOGGLE THROUGH ALBUM PAGE CONTENT */
+document.getElementById("album-cover-art").addEventListener("click", function(){
+
+    /* MAGIC STUFF:
+
+    document.getElementById("?")
+
+
+    */
+
+
+});
