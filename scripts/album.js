@@ -73,7 +73,7 @@ var setCurrentAlbum = function(album) {
     }
 };
 
-window.onload = function() {
+/*window.onload = function() {
     setCurrentAlbum(albumPicasso);
 
     var albums = [albumPicasso, albumMarconi, albumDebussy];
@@ -85,7 +85,14 @@ window.onload = function() {
             index = 0;
         }
     });
+};*/
+
+var albums = [albumPicasso, albumMarconi, albumDebussy];
+
+window.onload = function() {
+    albums.forEach(function() {
+        for (var i = 1; i < albums.length) {
+            albums[i];
+        }
+    });
 };
-
-
-/*});*/
