@@ -59,12 +59,16 @@ var setCurrentAlbum = function(album) {
     }
 };
 
-var findParentByClassName = function() {
-    // Finish writing function
-};
+// Check this function with Alissa.
+var findParentByClassName = function(element, name) {
+    while ((element = element.parentElement) && !element.classList.contains(name));
+    return element;
+}
 
-var getSongItem = function() {
-    // Finish writing function
+var getSongItem = function(element) {
+    switch(element)
+        case (element.className === ('song-item-number');
+            return element;
 };
 
 
