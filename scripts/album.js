@@ -65,6 +65,7 @@ var findParentByClassName = function(element, name) {
     return element;
 }
 
+// Check this function with Alissa.
 var getSongItem = function(element) {
     switch(element)
         case (element.className === ('song-item-number');
@@ -104,7 +105,12 @@ window.onload = function() {
 
     songListContainer.addEventListener('mouseover', function(event) {
       if (event.target.parentElement.className === 'album-view-song-item') {
-           event.target.parentElement.querySelector('.song-item-number').innerHTML = playButtonTemplate;
+           //event.target.parentElement.querySelector('.song-item-number').innerHTML = playButtonTemplate;
+           var songItem = getSongItem(event.target);
+
+           if (songItem.getAttribute('data-song-number') !== currentlyPlayingSong) {
+               songItem.innerHTML = playButtonTemplate;
+           }
        }
     });
 
