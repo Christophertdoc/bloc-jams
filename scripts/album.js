@@ -59,17 +59,32 @@ var setCurrentAlbum = function(album) {
     }
 };
 
-// Check this function with Alissa.
-var findParentByClassName = function(element, name) {
-    while ((element = element.parentElement) && !element.classList.contains(name));
-    return element;
-}
+var findParentByClassName = function(element, targetClass) {
+    if (element) {
+        var currentParent = element.parentElement;
+        while (currentParent.className !== targetClass && currentParent.className !== null) {
+            currentParent = currentParent.parentElement;
+        }
+        return currentParent;
+    }
+};
 
-// Check this function with Alissa.
 var getSongItem = function(element) {
-    switch(element)
-        case (element.className === ('song-item-number');
+    switch (element.className) {
+        case 'album-song-button':
+        case 'ion-play':
+        case 'ion-pause':
+            return findParentByClassName(element, 'song-item-number');
+        case 'album-view-song-item':
+            return element.querySelector('.song-item-number');
+        case 'song-item-title':
+        case 'song-item-duration':
+            return findParentByClassName(element, 'album-view-song-item').querySelector('.song-item-number');
+        case 'song-item-number':
             return element;
+        default:
+            return;
+    }
 };
 
 
