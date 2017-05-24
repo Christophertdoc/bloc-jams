@@ -37,7 +37,20 @@ var createSongRow = function(songNumber, songName, songLength) {
      + '</tr>'
      ;
 
-    return $(template);
+    var $row = $(template);
+
+    var onHover = function(event) {
+         /*
+         */
+     };
+     var offHover = function(event) {
+         /*
+         */
+     };
+
+    $row.find('.song-item-number').click(clickHandler);
+     $row.hover(onHover, offHover);
+     return $row;
 };
 
 var setCurrentAlbum = function(album) {
