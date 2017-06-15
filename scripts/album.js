@@ -40,31 +40,37 @@ var createSongRow = function(songNumber, songName, songLength) {
     var $row = $(template);
 
     var clickHandler = function() {
-         /*
-         Is this supposed to update the song player section (at the bottom of
-       the page) to the song that the user clicked on? 
-       */
+          var songNumber = $(this).attr('data-song-number');
+
+          if (currentlyPlayingSong !== null) {
+              var currentlyPlayingCell = $('.song-item-number[data-song-number="' + currentlyPlayingSong + '"]');
+              currentlyPlayingCell.html(currentlyPlayingSong);
+          }
+          if (currentlyPlayingSong !== songNumber) {
+              $(this).html(pauseButtonTemplate);
+              currentlyPlayingSong = songNumber;
+          } else if (currentlyPlayingSong === songNumber) {
+          $(this).html(playButtonTemplate);
+              currentlyPlayingSong = null;
+          }
      };
 
     var onHover = function(event) {
-         /*
-         1. When hovering over row (but not on number),
-         icon is displayed as white circle with pink arrow.
-         2. When hovering over the song number, icon is displayed as
-         pink circle with white arrow.
-         */
+        var songNumberCell = $(this).find('.song-item-number');
+        var songNumber = songNumberCell.attr('data-song-number');
+
+        if (songNumber !== currentlyPlayingSong) {
+         songNumberCell.html(playButtonTemplate);
+        }
      };
+
      var offHover = function(event) {
-         /*
-         icon 1 = white circle with pink triangle
-         icon 2 = pink circle with white triangle
-         1. When the cursor moves from icon 2 to somewhere else on the same row,
-         icon 2 changes to icon 1.
-         2. When the cursor moves from icon 2 to somewhere else outside of the song rows,
-         icon 2 changes to the song number.
-         3. When the cursor moves from a song row to another row, icon 1 shows up
-         at the next song row.
-         */
+        var songNumberCell = $(this).find('.song-item-number');
+        var songNumber = songNumberCell.attr('data-song-number');
+
+        if (songNumber !== currentlyPlayingSong) {
+          songNumberCell.html(songNumber);
+        }
      };
 
     $row.find('.song-item-number').click(clickHandler);
