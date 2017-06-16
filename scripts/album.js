@@ -6,7 +6,7 @@ var createSongRow = function(songNumber, songName, songLength) {
      + '  <td class="song-item-duration">' + songLength + '</td>'
      + '</tr>'
      ;
-
+ 
     var $row = $(template);
 
     var clickHandler = function() {
