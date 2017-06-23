@@ -14,12 +14,12 @@ var createSongRow = function(songNumber, songName, songLength) {
 
           if (currentlyPlayingSongNumber !== null) {
               var currentlyPlayingCell = $('.song-item-number[data-song-number="' + currentlyPlayingSongNumber + '"]');
-              currentlyPlayingCell.html(currentlyPlayingSongNumber);
+              currentlyPlayingCell.html(setSong(););
           }
           if (currentlyPlayingSongNumber !== songNumber) {
               $(this).html(pauseButtonTemplate);
               currentlyPlayingSongNumber = songNumber;
-              currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
+              currentSongFromAlbum = setSong();
               updatePlayerBarSong();
           } else if (currentlyPlayingSongNumber === songNumber) {
               $(this).html(playButtonTemplate);
@@ -96,11 +96,11 @@ var nextSong = function() {
     }
 
     // Save the last song number before changing it
-    var lastSongNumber = currentlyPlayingSongNumber;
+    setSong(); = currentlyPlayingSongNumber;
 
     // Set a new current song
-    currentlyPlayingSongNumber = currentSongIndex + 1;
-    currentSongFromAlbum = currentAlbum.songs[currentSongIndex];
+    currentlyPlayingSongNumber = setSong();
+    currentSongFromAlbum = setSong();
 
     // Update the Player Bar information
     updatePlayerBarSong();
@@ -122,11 +122,11 @@ var previousSong = function() {
     }
 
     // Save the last song number before changing it
-    var lastSongNumber = currentlyPlayingSongNumber;
+    setSong(); = currentlyPlayingSongNumber;
 
     // Set a new current song
-    currentlyPlayingSongNumber = currentSongIndex + 1;
-    currentSongFromAlbum = currentAlbum.songs[currentSongIndex];
+    currentlyPlayingSongNumber = setSong();
+    currentSongFromAlbum = setSong();
 
     // Update the Player Bar information
     updatePlayerBarSong();
@@ -138,6 +138,15 @@ var previousSong = function() {
 
     $previousSongNumberCell.html(pauseButtonTemplate);
     $lastSongNumberCell.html(lastSongNumber);
+};
+
+var setSong = function(songNumber) {
+    var currentlyPlayingSongNumber = songNumber;
+    var currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
+};
+
+var getSongNumberCell = function() {
+
 };
 
 var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
