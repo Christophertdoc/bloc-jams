@@ -30,7 +30,7 @@ var createSongRow = function(songNumber, songName, songLength) {
      };
 
     var onHover = function(event) {
-        var songNumberCell = $(this).find('.song-item-number');
+        var songNumberCell = getSongNumberCell();
         var songNumber = parseInt(songNumberCell.attr('data-song-number'));
 
         if (songNumber !== currentlyPlayingSongNumber) {
@@ -39,7 +39,7 @@ var createSongRow = function(songNumber, songName, songLength) {
      };
 
      var offHover = function(event) {
-        var songNumberCell = $(this).find('.song-item-number');
+        var songNumberCell = getSongNumberCell();
         var songNumber = parseInt(songNumberCell.attr('data-song-number'));
 
         if (songNumber !== currentlyPlayingSongNumber) {
@@ -145,8 +145,8 @@ var setSong = function(songNumber) {
     var currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
 };
 
-var getSongNumberCell = function() {
-
+var getSongNumberCell = function(number) {
+    $(this).find('.song-item-number');
 };
 
 var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
