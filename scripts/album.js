@@ -26,14 +26,15 @@ var createSongRow = function(songNumber, songName, songLength) {
              setSong(songNumber);
             currentSoundFile.play();
             updateSeekBarWhileSongPlays();
-             $(this).html(pauseButtonTemplate);
+            currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
+
 
              var $volumeFill = $('.volume .fill');
              var $volumeThumb = $('.volume .thumb');
              $volumeFill.width(currentVolume + '%');
              $volumeThumb.css({left: currentVolume + '%'});
 
-             currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
+             $(this).html(pauseButtonTemplate);
              updatePlayerBarSong();
          } else if (currentlyPlayingSongNumber === songNumber) {
             if (currentSoundFile.isPaused()) {
