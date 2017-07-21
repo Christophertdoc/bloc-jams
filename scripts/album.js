@@ -1,4 +1,4 @@
-var createSongRow = function(songNumber, songName, songLength) {
+var createSongRow = function(songNumber, songName, filterTimeCode(songLength);) {
     var template =
        '<tr class="album-view-song-item">'
      + '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
@@ -104,6 +104,8 @@ var updateSeekBarWhileSongPlays = function() {
             var $seekBar = $('.seek-control .seek-bar');
 
             updateSeekPercentage($seekBar, seekBarFillRatio);
+
+            setCurrentTimeInPlayerBar();
         });
     }
 };
@@ -166,7 +168,9 @@ var updatePlayerBarSong = function() {
   $('.currently-playing .artist-name').html(currentAlbum.artist);
   $('.currently-playing .song-name').html(currentSongFromAlbum.title);
   $('.currently-playing .artist-song-mobile').html(currentSongFromAlbum.title + " - " + currentAlbum.artist);
-  /* This line from checkpoint code */ $('.main-controls .play-pause').html(playerBarPauseButton);
+  $('.main-controls .play-pause').html(playerBarPauseButton);
+
+  setTotalTimeInPlayerBar(totalTime);
 };
 
 var nextSong = function() {
@@ -249,6 +253,32 @@ var setVolume = function(volume) {
 
 var getSongNumberCell = function(number) {
     return $('.song-item-number[data-song-number="' + number + '"]');
+};
+
+/* Assignment 34 #1 */
+var setCurrentTimeInPlayerBar = function(filterTimeCode(currentTime);) {
+    $('.current-time').html(currentTime);
+};
+
+/* Assignment 34 #2 */
+var setTotalTimeInPlayerBar = function(filterTimeCode(totalTime);) {
+    $('.total-time').html(totalTime);
+};
+
+/* Assignment 34 #3 */
+var filterTimeCode = function(timeInSeconds) {
+    var parsedTime = parseFloat(timeInSeconds);
+    var minutes = Math.floor(parsedTime / 60);
+    var seconds = parsedTime - minutes * 60;
+
+    if (seconds < 10) {
+        var sec = "0" + seconds;
+    } else {
+        var sec = seconds;
+    }
+
+    var formattedTime = minutes + ":" + sec;
+    return formattedTime;
 };
 
 var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
