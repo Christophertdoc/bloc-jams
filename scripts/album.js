@@ -1,4 +1,4 @@
-var createSongRow = function(songNumber, songName, filterTimeCode(songLength);) {
+var createSongRow = function(songNumber, songName, songLength) {
     var template =
        '<tr class="album-view-song-item">'
      + '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
@@ -92,7 +92,7 @@ var setCurrentAlbum = function(album) {
     $albumSongList.empty();
 
     for (var i = 0; i < album.songs.length; i++) {
-        var $newRow = createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
+        var $newRow = createSongRow(i + 1, album.songs[i].title, filterTimeCode(album.songs[i].duration));
         $albumSongList.append($newRow);
     }
 };
@@ -105,7 +105,7 @@ var updateSeekBarWhileSongPlays = function() {
 
             updateSeekPercentage($seekBar, seekBarFillRatio);
 
-            setCurrentTimeInPlayerBar();
+            setCurrentTimeInPlayerBar(filterTimeCode(this.getTime()));
         });
     }
 };
@@ -170,7 +170,7 @@ var updatePlayerBarSong = function() {
   $('.currently-playing .artist-song-mobile').html(currentSongFromAlbum.title + " - " + currentAlbum.artist);
   $('.main-controls .play-pause').html(playerBarPauseButton);
 
-  setTotalTimeInPlayerBar(totalTime);
+  setTotalTimeInPlayerBar(filterTimeCode(currentSongFromAlbum.duration));
 };
 
 var nextSong = function() {
@@ -256,12 +256,12 @@ var getSongNumberCell = function(number) {
 };
 
 /* Assignment 34 #1 */
-var setCurrentTimeInPlayerBar = function(filterTimeCode(currentTime);) {
+var setCurrentTimeInPlayerBar = function(currentTime) {
     $('.current-time').html(currentTime);
 };
 
 /* Assignment 34 #2 */
-var setTotalTimeInPlayerBar = function(filterTimeCode(totalTime);) {
+var setTotalTimeInPlayerBar = function(totalTime) {
     $('.total-time').html(totalTime);
 };
 
@@ -269,7 +269,7 @@ var setTotalTimeInPlayerBar = function(filterTimeCode(totalTime);) {
 var filterTimeCode = function(timeInSeconds) {
     var parsedTime = parseFloat(timeInSeconds);
     var minutes = Math.floor(parsedTime / 60);
-    var seconds = parsedTime - minutes * 60;
+    var seconds = Math.ceil(parsedTime - minutes * 60);
 
     if (seconds < 10) {
         var sec = "0" + seconds;
